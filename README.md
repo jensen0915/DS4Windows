@@ -53,6 +53,9 @@ For most Windows PCs, download the latest `DS4Windows_*_x64.zip` file from
 
 `ds4w.bat` is not the recommended install path for this fork because it may download a different upstream build.
 
+Windows SmartScreen may warn that `DS4Windows.exe` is from an unknown publisher because this fork is not code-signed.
+If you downloaded it from this repository's Releases page, choose **More info** and **Run anyway** to start it.
+
 ## Development
 
 Visual Studio is not required. With the .NET 8 SDK installed, this repo can be built from VS Code or PowerShell:
