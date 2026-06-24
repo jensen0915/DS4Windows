@@ -20,12 +20,15 @@ This fork also includes:
 
 ## About this fork
 
-I've made this fork because some of the buttons on my controller started bouncing. Normally I would just add a
-feature that would fix my problem, make a pull request to the original repo and forget about the project. 
-The issue here is that Ryochan7 stopped maintaining the original project, so I decided to make slight 
-modifications to the code that detects if the installed version is up-to-date, so it now pulls version info from my 
-repo. This way if you install my version, you don't get the annoying popup saying your version is outdated. If there 
-are any feature requests, I'm more than happy to at least look at them and assess whether I could add them.
+This fork is maintained for controller compatibility fixes that are useful in my setup, especially Switch Pro and
+Nintendo-style controller layouts. It keeps the original DS4Windows behavior where possible, but adds small fixes for
+compatible controllers that do not report calibration or button layout the same way as official PlayStation devices.
+
+The current fork-specific changes are:
+
+- A `Gamepad (Nintendo layout)` preset for Nintendo/Switch face-button order.
+- A Switch Pro stick calibration fallback for compatible controllers with missing or invalid calibration data.
+- Hidden update checks in debug builds, so local development runs do not prompt for upstream releases.
 
 ## License
 
@@ -36,16 +39,19 @@ available in this source code from the COPYING file.
 
 ## Downloads
 
-- **[Main builds of DS4Windows](https://ds4-windows.com)**
+Ready-to-run builds for this fork are published on the
+[GitHub Releases page](https://github.com/jensen0915/DS4Windows/releases).
 
-For this fork, use the GitHub Releases page for ready-to-run builds. Publishing a release tag such as `v3.5.1`
-will run the included `.github/workflows/release.yml` workflow and attach x64/x86 ZIP files to that release.
+For most Windows PCs, download the latest `DS4Windows_*_x64.zip` file from
+[the latest release](https://github.com/jensen0915/DS4Windows/releases/latest).
 
 ## Install
 
-You can install DS4Windows by downloading it from [Official Website](https://ds4-windows.com) and place it to your preferred place.
+1. Download `DS4Windows_*_x64.zip` from the latest GitHub Release.
+2. Extract the ZIP to any folder you prefer.
+3. Run `DS4Windows.exe`.
 
-Alternatively, you can download [`ds4w.bat`](https://github.com/ds4windowsapp/DS4Windows/blob/main/ds4w.bat) file and execute it. It will open a window that downloads and places the program in `%LOCALAPPDATA%\DS4Windows` and creates a desktop shortcut to the executable.
+`ds4w.bat` is not the recommended install path for this fork because it may download a different upstream build.
 
 ## Development
 
@@ -69,6 +75,20 @@ For a local optimized build:
 ```powershell
 dotnet build DS4WindowsWPF.sln -c Release -p:Platform=x64 --configfile NuGet.Config
 ```
+
+## Publishing a release
+
+This repo includes a GitHub Actions release workflow. To publish a build:
+
+1. Open the [new release page](https://github.com/jensen0915/DS4Windows/releases/new).
+2. Create a new tag, for example `v3.5.1`, targeting `main`.
+3. Set the release title to `DS4Windows v3.5.1`.
+4. Add release notes describing the changes.
+5. Leave the binary attachment area empty.
+6. Click **Publish release**.
+
+After publishing, GitHub Actions will build the app and attach the x64/x86 ZIP files to the release. If the files do
+not appear immediately, wait for the release workflow to finish in the Actions tab.
 
 ## Requirements
 
