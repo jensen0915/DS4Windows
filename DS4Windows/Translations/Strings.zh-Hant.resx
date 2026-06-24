@@ -381,6 +381,12 @@ Maps the controller output to a standard gamepad</value>
   <data name="GamepadPresetName" xml:space="preserve">
     <value>遊戲控制器</value>
   </data>
+  <data name="NintendoGamepadPresetDescription" xml:space="preserve">
+    <value>使用 Nintendo/Switch 的 ABXY 按鍵排列映射到標準遊戲控制器。</value>
+  </data>
+  <data name="NintendoGamepadPresetName" xml:space="preserve">
+    <value>遊戲控制器（Nintendo 配置）</value>
+  </data>
   <data name="KBMGyroMouseDescription" xml:space="preserve">
     <value>將控制器的輸出映射到虛擬鍵盤+滑鼠的控制。 對於不支持遊戲控制器的FPS第一人稱射擊遊戲很有用。 陀螺儀已映射到虛擬滑鼠。
 Maps the controller output to virtual KB+M controls. Useful for playing FPS games with no gamepad support. Gyro is mapped to a virtual Mouse.</value>

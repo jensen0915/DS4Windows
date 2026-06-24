@@ -92,6 +92,12 @@ namespace DS4WinWPF.DS4Forms
         {
             InitializeComponent();
 
+#if DEBUG
+            checkUpdateStartupCk.Visibility = Visibility.Collapsed;
+            checkEveryOptionsStack.Visibility = Visibility.Collapsed;
+            checkUpdatesBtn.Visibility = Visibility.Collapsed;
+#endif
+
             mainWinVM = new MainWindowsViewModel();
             DataContext = mainWinVM;
 
@@ -206,7 +212,7 @@ namespace DS4WinWPF.DS4Forms
 
             // Log exceptions that might occur
             Util.LogAssistBackgroundTask(tempTask);
-#if !BETA_VERSION
+#if !DEBUG && !BETA_VERSION
             tempTask = Task.Delay(100).ContinueWith(_ =>
             {
                 int checkwhen = Global.CheckWhen;

@@ -1657,6 +1657,24 @@ namespace DS4WinWPF.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Maps the controller output to a standard gamepad using Nintendo/Switch face button layout..
+        /// </summary>
+        public static string NintendoGamepadPresetDescription {
+            get {
+                return ResourceManager.GetString("NintendoGamepadPresetDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gamepad (Nintendo layout).
+        /// </summary>
+        public static string NintendoGamepadPresetName {
+            get {
+                return ResourceManager.GetString("NintendoGamepadPresetName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Gamepad Test.
         /// </summary>
         public static string GamepadTest {

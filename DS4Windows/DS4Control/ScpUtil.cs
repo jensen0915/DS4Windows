@@ -2883,6 +2883,30 @@ namespace DS4Windows
             tempprofileDistance[device] = false;
         }
 
+        public static void LoadNintendoGamepadProfile(int device, bool launchprogram, ControlService control,
+            bool xinputChange = true, bool postLoad = true)
+        {
+            m_Config.LoadNintendoGamepadProfile(device, launchprogram, control, "", xinputChange, postLoad);
+            m_Config.EstablishDefaultSpecialActions(device);
+            m_Config.CacheExtraProfileInfo(device);
+
+            tempprofilename[device] = string.Empty;
+            useTempProfile[device] = false;
+            tempprofileDistance[device] = false;
+        }
+
+        public static void LoadNintendoDS4GamepadProfile(int device, bool launchprogram, ControlService control,
+            bool xinputChange = true, bool postLoad = true)
+        {
+            m_Config.LoadNintendoDS4GamepadProfile(device, launchprogram, control, "", xinputChange, postLoad);
+            m_Config.EstablishDefaultSpecialActions(device);
+            m_Config.CacheExtraProfileInfo(device);
+
+            tempprofilename[device] = string.Empty;
+            useTempProfile[device] = false;
+            tempprofileDistance[device] = false;
+        }
+
         public static void LoadDefaultGamepadGyroProfile(int device, bool launchprogram, ControlService control,
             bool xinputChange = true, bool postLoad = true)
         {
@@ -9735,6 +9759,13 @@ namespace DS4Windows
             }
         }
 
+        public void LoadNintendoDS4GamepadProfile(int device, bool launchprogram, ControlService control,
+            string propath = "", bool xinputChange = true, bool postLoad = true)
+        {
+            LoadBlankDS4Profile(device, launchprogram, control, propath, xinputChange, postLoad);
+            ApplyNintendoFaceButtonMapping(device);
+        }
+
         public void LoadBlankProfile(int device, bool launchprogram, ControlService control,
             string propath = "", bool xinputChange = true, bool postLoad = true)
         {
@@ -9768,6 +9799,21 @@ namespace DS4Windows
             {
                 PostLoadSnippet(device, control, xinputStatus, xinputPlug);
             }
+        }
+
+        public void LoadNintendoGamepadProfile(int device, bool launchprogram, ControlService control,
+            string propath = "", bool xinputChange = true, bool postLoad = true)
+        {
+            LoadBlankProfile(device, launchprogram, control, propath, xinputChange, postLoad);
+            ApplyNintendoFaceButtonMapping(device);
+        }
+
+        private void ApplyNintendoFaceButtonMapping(int device)
+        {
+            GetDS4CSetting(device, DS4Controls.Cross).UpdateSettings(false, X360Controls.B, "", DS4KeyType.None);
+            GetDS4CSetting(device, DS4Controls.Circle).UpdateSettings(false, X360Controls.A, "", DS4KeyType.None);
+            GetDS4CSetting(device, DS4Controls.Square).UpdateSettings(false, X360Controls.Y, "", DS4KeyType.None);
+            GetDS4CSetting(device, DS4Controls.Triangle).UpdateSettings(false, X360Controls.X, "", DS4KeyType.None);
         }
 
         public void LoadDefaultGamepadGyroProfile(int device, bool launchprogram, ControlService control,

@@ -254,6 +254,36 @@ namespace DS4Windows.InputDevices
             Removal += SwitchProDevice_Removal;
         }
 
+        public static bool HasValidStickAxisRange(StickAxisData axis)
+        {
+            return axis.max > axis.min && axis.mid >= axis.min && axis.mid <= axis.max;
+        }
+
+        private static StickAxisData DefaultStickAxisData()
+        {
+            return new StickAxisData()
+            {
+                max = 4095,
+                mid = 2048,
+                min = 0,
+            };
+        }
+
+        private void EnsureUsableStickCalibration()
+        {
+            if (HasValidStickAxisRange(leftStickXData) &&
+                HasValidStickAxisRange(leftStickYData) &&
+                HasValidStickAxisRange(rightStickXData) &&
+                HasValidStickAxisRange(rightStickYData))
+            {
+                return;
+            }
+
+            // ponytail: some Switch Pro-compatible pads return empty SPI calibration; default range keeps sticks usable.
+            leftStickXData = leftStickYData = rightStickXData = rightStickYData = DefaultStickAxisData();
+            AppLogger.LogToGui("Switch Pro stick calibration data is invalid. Using default stick range.", false);
+        }
+
         private void SwitchProDevice_Removal(object sender, EventArgs e)
         {
             connectionOpened = false;
@@ -1117,6 +1147,8 @@ namespace DS4Windows.InputDevices
             //Console.WriteLine(string.Join(",", tmpBuffer));
             //Console.WriteLine();
             //Console.WriteLine(string.Join(",", rightStickCalib));
+
+            EnsureUsableStickCalibration();
 
             /*
             // Grab Factory LS Dead Zone

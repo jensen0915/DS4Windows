@@ -7,9 +7,16 @@ DualShock 4 experience on your PC. By emulating an Xbox 360 controller, many
 more games are accessible. Other input controllers are also supported including the
 DualSense, Switch Pro, and JoyCon controllers (**first party hardware only**).
 
-This project is a fork of the work of Jays2Kings and Ryochan7. It adds various new features like switch 
+This project is a fork of the work of Jays2Kings and Ryochan7. It adds various new features like switch
 [debouncing](https://www.ganssle.com/debouncing.pdf), a tool that helps to fix stick drift and pitch and roll simulation
 for DS3 based on accelerometer value (which is a work of [sunnyqeen](https://github.com/sunnyqeen)).
+
+This fork also includes:
+
+- A `Gamepad (Nintendo layout)` preset that swaps the face button layout for Nintendo/Switch muscle memory:
+  `Cross -> B`, `Circle -> A`, `Square -> Y`, and `Triangle -> X`.
+- A fallback for invalid Switch Pro stick calibration data so compatible controllers can keep a usable default stick range.
+- Debug builds hide and skip update checks so local development builds do not prompt for upstream releases.
 
 ## About this fork
 
@@ -31,11 +38,37 @@ available in this source code from the COPYING file.
 
 - **[Main builds of DS4Windows](https://ds4-windows.com)**
 
+For this fork, use the GitHub Releases page for ready-to-run builds. Publishing a release tag such as `v3.5.1`
+will run the included `.github/workflows/release.yml` workflow and attach x64/x86 ZIP files to that release.
+
 ## Install
 
 You can install DS4Windows by downloading it from [Official Website](https://ds4-windows.com) and place it to your preferred place.
 
 Alternatively, you can download [`ds4w.bat`](https://github.com/ds4windowsapp/DS4Windows/blob/main/ds4w.bat) file and execute it. It will open a window that downloads and places the program in `%LOCALAPPDATA%\DS4Windows` and creates a desktop shortcut to the executable.
+
+## Development
+
+Visual Studio is not required. With the .NET 8 SDK installed, this repo can be built from VS Code or PowerShell:
+
+```powershell
+cd path\to\DS4Windows
+$env:DOTNET_CLI_HOME="$PWD\.dotnet-home"
+$env:NUGET_PACKAGES="$PWD\.nuget-packages"
+dotnet build DS4WindowsWPF.sln -p:Platform=x64 --configfile NuGet.Config
+```
+
+The debug executable is written to:
+
+```text
+DS4Windows\bin\x64\Debug\net8.0-windows\DS4Windows.exe
+```
+
+For a local optimized build:
+
+```powershell
+dotnet build DS4WindowsWPF.sln -c Release -p:Platform=x64 --configfile NuGet.Config
+```
 
 ## Requirements
 

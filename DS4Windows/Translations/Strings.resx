@@ -379,6 +379,12 @@ Example: whyme_DS4Windows</value>
   <data name="GamepadPresetName" xml:space="preserve">
     <value>Gamepad</value>
   </data>
+  <data name="NintendoGamepadPresetDescription" xml:space="preserve">
+    <value>Maps the controller output to a standard gamepad using Nintendo/Switch face button layout.</value>
+  </data>
+  <data name="NintendoGamepadPresetName" xml:space="preserve">
+    <value>Gamepad (Nintendo layout)</value>
+  </data>
   <data name="KBMGyroMouseDescription" xml:space="preserve">
     <value>Maps the controller output to virtual KB+M controls. Useful for playing FPS games with no gamepad support. Gyro is mapped to a virtual Mouse.</value>
   </data>

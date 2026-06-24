@@ -325,7 +325,7 @@
                             </ComboBox>
                         </StackPanel>
 
-                        <CheckBox Content="{lex:Loc CheckUpdateStartup}" Margin="{StaticResource spaceMargin}"
+                        <CheckBox x:Name="checkUpdateStartupCk" Content="{lex:Loc CheckUpdateStartup}" Margin="{StaticResource spaceMargin}"
                               IsChecked="{Binding CheckForUpdates}" />
                         <StackPanel x:Name="checkEveryOptionsStack" Orientation="Horizontal" Margin="{StaticResource spaceMargin}"
                                 IsEnabled="{Binding CheckForUpdates}">

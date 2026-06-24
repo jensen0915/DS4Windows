@@ -73,6 +73,29 @@ namespace DS4WinWPF.DS4Control
         }
     }
 
+    public class NintendoGamepadPreset : PresetOption
+    {
+        public NintendoGamepadPreset()
+        {
+            name = Translations.Strings.NintendoGamepadPresetName;
+            description = Translations.Strings.NintendoGamepadPresetDescription;
+            outputControllerChoice = true;
+            outputCont = OutputContChoice.Xbox360;
+        }
+
+        public override void ApplyPreset(int idx)
+        {
+            if (outputCont == OutputContChoice.Xbox360)
+            {
+                DS4Windows.Global.LoadNintendoGamepadProfile(idx, false, App.rootHub, false);
+            }
+            else if (outputCont == OutputContChoice.DualShock4)
+            {
+                DS4Windows.Global.LoadNintendoDS4GamepadProfile(idx, false, App.rootHub, false);
+            }
+        }
+    }
+
     public class GamepadGyroCamera : PresetOption
     {
         public GamepadGyroCamera()

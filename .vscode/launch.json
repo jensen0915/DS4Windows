@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "DS4Windows x64",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build DS4Windows x64",
+      "program": "${workspaceFolder}\\DS4Windows\\bin\\x64\\Debug\\net8.0-windows\\DS4Windows.exe",
+      "cwd": "${workspaceFolder}\\DS4Windows\\bin\\x64\\Debug\\net8.0-windows",
+      "stopAtEntry": false
+    }
+  ]
+}
