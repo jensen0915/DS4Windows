@@ -90,6 +90,9 @@ This repo includes a GitHub Actions release workflow. To publish a build:
 After publishing, GitHub Actions will build the app and attach the x64/x86 ZIP files to the release. If the files do
 not appear immediately, wait for the release workflow to finish in the Actions tab.
 
+If the release only shows GitHub's automatic `Source code (zip)` and `Source code (tar.gz)` files, open
+**Actions**, choose **.NET Release**, click **Run workflow**, and enter the release tag such as `v3.5.1`.
+
 ## Requirements
 
 - Windows 10 or newer (Thanks Microsoft)
