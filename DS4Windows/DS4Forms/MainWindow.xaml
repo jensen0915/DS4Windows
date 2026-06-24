@@ -76,7 +76,7 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn x:Name="exclusiveColumn" Header="Ex" Width="50">
+                                <GridViewColumn x:Name="exclusiveColumn" Header="{lex:Loc ExclusiveAccess}" Width="85">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel Width="{Binding ElementName=exclusiveColumn, Path=Width}">
