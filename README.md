@@ -54,6 +54,7 @@ For most Windows PCs, download the latest `DS4Windows_*_x64.zip` file from
 `ds4w.bat` is not the recommended install path for this fork because it may download a different upstream build.
 
 Windows SmartScreen may warn that `DS4Windows.exe` is from an unknown publisher because this fork is not code-signed.
+This is a personal fork, and I do not currently have extra budget for a paid code-signing certificate.
 If you downloaded it from this repository's Releases page, choose **More info** and **Run anyway** to start it.
 
 ## Development
