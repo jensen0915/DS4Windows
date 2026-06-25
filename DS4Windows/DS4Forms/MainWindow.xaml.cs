@@ -92,11 +92,10 @@ namespace DS4WinWPF.DS4Forms
         {
             InitializeComponent();
 
-#if DEBUG
             checkUpdateStartupCk.Visibility = Visibility.Collapsed;
             checkEveryOptionsStack.Visibility = Visibility.Collapsed;
             checkUpdatesBtn.Visibility = Visibility.Collapsed;
-#endif
+            Global.CheckWhen = 0;
 
             mainWinVM = new MainWindowsViewModel();
             DataContext = mainWinVM;
@@ -211,38 +210,6 @@ namespace DS4WinWPF.DS4Forms
             });
 
             // Log exceptions that might occur
-            Util.LogAssistBackgroundTask(tempTask);
-#if !DEBUG && !BETA_VERSION
-            tempTask = Task.Delay(100).ContinueWith(_ =>
-            {
-                int checkwhen = Global.CheckWhen;
-                if (checkwhen > 0 && DateTime.Now >= Global.LastChecked + TimeSpan.FromHours(checkwhen))
-                {
-                    try
-                    {
-                        if (Changelog.CheckNewerVersionExists(out var version, false))
-                        {
-                            DisplayUpdaterWindow(version.ToString());
-                        }
-                    }
-                    catch
-                    {
-                        Dispatcher.Invoke(() => MessageBox.Show(Strings.FailedToRetrieveLatestVersion, "DS4Windows Updater"));
-                        // bubble the exception up to allow to see what's wrong in the log
-                        throw;
-                    }
-
-                    Global.LastChecked = DateTime.Now;
-                }
-
-                // Check if main window closing was requested from app update.
-                // Quit task early
-                //if (contextclose)
-                //{
-                //    return;
-                //}
-            });
-#endif
             Util.LogAssistBackgroundTask(tempTask);
         }
 
@@ -1494,22 +1461,6 @@ Suspend support not enabled.", true);
 
         private void CheckUpdatesBtn_Click(object sender, RoutedEventArgs e)
         {
-            Task.Run(() =>
-            {
-                try
-                {
-                    if (Changelog.CheckNewerVersionExists(out var version, false))
-                        DisplayUpdaterWindow(version.ToString());
-                    else
-                        Dispatcher.Invoke(() => MessageBox.Show(Properties.Resources.UpToDate, "DS4Windows Updater"));
-                }
-                catch
-                {
-                    Dispatcher.Invoke(() => MessageBox.Show(Strings.FailedToRetrieveLatestVersion, "DS4Windows Updater"));
-                    // bubble the exception up to allow to see what's wrong in the log
-                    throw;
-                }
-            });
         }
 
         private void ImportProfBtn_Click(object sender, RoutedEventArgs e)

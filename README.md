@@ -16,7 +16,7 @@ This fork also includes:
 - A `Gamepad (Nintendo layout)` preset that swaps the face button layout for Nintendo/Switch muscle memory:
   `Cross -> B`, `Circle -> A`, `Square -> Y`, and `Triangle -> X`.
 - A fallback for invalid Switch Pro stick calibration data so compatible controllers can keep a usable default stick range.
-- Debug builds hide and skip update checks so local development builds do not prompt for upstream releases.
+- Update checks are disabled in this fork so users are not prompted to install a different upstream build.
 
 ## About this fork
 
@@ -28,7 +28,7 @@ The current fork-specific changes are:
 
 - A `Gamepad (Nintendo layout)` preset for Nintendo/Switch face-button order.
 - A Switch Pro stick calibration fallback for compatible controllers with missing or invalid calibration data.
-- Hidden update checks in debug builds, so local development runs do not prompt for upstream releases.
+- Disabled update checks, so this fork does not prompt users to install a different upstream build.
 
 ## License
 
